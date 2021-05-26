@@ -1,0 +1,36 @@
+body {
+  background-image: url(../src/img//background3.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* .App {
+  text-align: center;
+} */
+
+
+
+.tickits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.ticki {
+  /* background: rgba(233, 219, 219, 0.226); */
+  background-image: url(../src/img/img6.webp);
+  padding: 15px;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 20px rgba(51, 51, 51, 0.089);
+  text-align: center;
+}
+
+
+.tickis{
+  width: 250px;
+}
+
+.btn {
+  margin: 10px;
+}
