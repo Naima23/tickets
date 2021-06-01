@@ -1,13 +1,13 @@
 //material-ui
 import React , {useState}  from  'react';
-import {useHistory} from 'react-router-dom';
+// import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,7 +17,7 @@ axios.defaults.withCredentials = true
 
 export default function Home(props) {
 
-        const history = useHistory();
+        // const history = useHistory();
         
         const [data, setData] = useState({email:'', password:''})
 
@@ -96,18 +96,18 @@ export default function Home(props) {
 }
 
 
-function Copyright() {
-        return (
-          <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-              Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-          </Typography>
-        );
-      }
+// function Copyright() {
+//         return (
+//           <Typography variant="body2" color="textSecondary" align="center">
+//             {'Copyright © '}
+//             <Link color="inherit" href="https://material-ui.com/">
+//               Your Website
+//             </Link>{' '}
+//             {new Date().getFullYear()}
+//             {'.'}
+//           </Typography>
+//         );
+//       }
       
       const useStyles = makeStyles((theme) => ({
         paper: {

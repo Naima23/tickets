@@ -111,20 +111,6 @@ export default function SignUp(props) {
             </Select>
             </Grid>
           </Grid>
-
-          {/*  Sign Up as a Employee? */}
-              {/* <Grid container justify="flex-end">
-              <Grid item>
-                <Link href="/test" variant="body2">
-                Sign Up as a Employee?
-                </Link>
-              </Grid>
-            </Grid> */}
-
-
-
-
-
           <Button 
             type="submit"
             fullWidth
@@ -149,18 +135,18 @@ export default function SignUp(props) {
 
 //***********style ui */
 
-function Copyright() {
-    return (
-      <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
-        <Link color="inherit" href="https://material-ui.com/">
-          Your Website
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
+// function Copyright() {
+//     return (
+//       <Typography variant="body2" color="textSecondary" align="center">
+//         {'Copyright © '}
+//         <Link color="inherit" href="https://material-ui.com/">
+//           Your Website
+//         </Link>{' '}
+//         {new Date().getFullYear()}
+//         {'.'}
+//       </Typography>
+//     );
+//   }
   
   const useStyles = makeStyles((theme) => ({
     paper: {

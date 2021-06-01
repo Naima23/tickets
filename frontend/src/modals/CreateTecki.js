@@ -1,4 +1,4 @@
-import React ,{useState, useEffect} from 'react'
+import React ,{useState} from 'react'
 // import {useHistory} from 'react-router-dom';
 import axios from 'axios'
 
@@ -33,27 +33,27 @@ export default function CreateTecki() {
                 </div>
                 <div className="modal-body">
                 <form>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">titre</label>
-                    <input name="titre" type="text" class="form-control" onChange={handlechange} />
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">titre</label>
+                    <input name="titre" type="text" className="form-control" onChange={handlechange} />
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">type</label>
-                    <input name="type" type="text" class="form-control" onChange={handlechange} />
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">type</label>
+                    <input name="type" type="text" className="form-control" onChange={handlechange} />
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">service</label>
-                    <input name="service" type="text" class="form-control" onChange={handlechange}  />
+                <div className="mb-3">
+                    <label htmlFor="exampleInputPassword1" className="form-label">service</label>
+                    <input name="service" type="text" className="form-control" onChange={handlechange}  />
                 </div>              
-                <select name="urgence" class="form-select" aria-label="Default select example" onChange={handlechange}>
+                <select name="urgence" className="form-select" aria-label="Default select example" onChange={handlechange}>
                 <option selected>select urgence</option>
                 <option value="urgence">urgence</option>
                 <option value="pas urgence">pas urgence</option>
                 <option value="tres urgence">tres urgence</option>
                 </select>
-                <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"onChange={handlechange}></textarea>
+                <div className="mb-3">
+                <label htmlFor="exampleFormControlTextarea1" className="form-label">Description</label>
+                <textarea name="description" className="form-control" id="exampleFormControlTextarea1" rows="3"onChange={handlechange}></textarea>
                 </div>
                 </form>
                 </div>

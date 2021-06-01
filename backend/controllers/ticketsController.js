@@ -1,3 +1,4 @@
+const { findById } = require('../models/Tickets');
 const Ticket = require('../models/Tickets')
 
 //create Tickets
@@ -58,6 +59,7 @@ exports.allTicket = (req, res ,next)=>{
       });
     };
 
+
 //updateTickets
  exports.updateTickets = (req , res) =>{
      const id = req.params.id;
@@ -77,6 +79,32 @@ exports.allTicket = (req, res ,next)=>{
  }
 
 
+//getTicketById
+exports.getTicketById = async (req, res)=>{
+    try {
+        const ticket = await Ticket.findById(req.params.id);
+        if(ticket) return res.status(200).json(ticket)
+    } catch (error) {
+        throw Error(error)
+    }
+}
+
+
+
+
+
+// filtr date 
+exports.findData = async (req, res) => {
+    const { date } = req.body;
+    try {
+        const ticket = await Ticket.find({date});
+        if(ticket) return res.status(200).json(ticket)
+    } catch (error) {
+        throw Error(error)
+    }
+    }
+  
+  
  
 
 

@@ -3,7 +3,7 @@ const User = require('../models/User');
 
 exports.auth = (type) => (req, res, next) => {
   const token  = req.cookies['jwt']
-  console.log('token from auth', token)
+  // console.log('token from auth', token)
   if (token){ 
     jwt.verify(token, process.env.SECRET_TOKEN, async (err, decodedtoken) => {
       if (!err && decodedtoken.role === type) {

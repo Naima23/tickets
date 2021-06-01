@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import CreateTecki from '../modals/CreateTecki'
-import UpdateTicket from '../modals/Updateticket'
+// import UpdateTicket from '../modals/Updateticket'
 import axios from 'axios'
 import Nav from './Nav'
+import {Link} from 'react-router-dom';
 
 const User = () => {
 //  const history = useHistory()
@@ -27,7 +28,7 @@ const User = () => {
 //Delete Tickets
     const onDelete = async(id) => {
         try {
-          const res = await axios.delete(`http://localhost:3012/api/delete/${id}`);
+         await axios.delete(`http://localhost:3012/api/delete/${id}`);
             // if(res) window.confirm('are you sure you want to delete this ticket');
             // return window.location.reload();
             getTicket();
@@ -35,9 +36,6 @@ const User = () => {
             if (error) console.log(error.response);
         }
     }
-    const myData = data;
-    console.log('myData', myData)
-
 
     return (
         <>
@@ -46,7 +44,7 @@ const User = () => {
       
             <div>
                 <div className="container tickits">
-                    {data.map(res => (
+                    {data && data.map(res => (
                         <>
                             <div key={res._id} className='ticki'>
                                 <div className='country-detail'>
@@ -55,10 +53,19 @@ const User = () => {
                                     <p><b>Service: </b>{res.service}</p>
                                     <p><b>Urgence: </b>{res.urgence}</p>
                                     <p><b>Description: </b>{res.description}</p>
+                                    <p><b>date: </b>{res.date}</p>
                                     <p><b>Etat: </b>{res.etat}</p>
+                                    {/* <UpdateTicket title={res.titre} /> */}
                                     {/* <button className='btn btn-success'>Update</button> */}
-                                    <UpdateTicket />
-                                    <button className='btn btn-danger'onClick={()=>onDelete(res._id)}> Delete</button>                          
+                                    {
+                                    (res.etat !== 'cloturer') && (
+                                    <>
+                                    {/* <button type="button" className='btn btn-success' data-bs-toggle="modal" data-bs-target="#exampleModal">Update Ticket</button> */}
+                                    <Link to={`/UpdateTicket/${res._id}`}><button className="btn btn-primary">Update</button></Link>
+                                    <button className='btn btn-danger'onClick={()=>onDelete(res._id)}>Delete</button> 
+                                    </>
+                                    )
+                                    }                      
                                 </div>
                             </div>
                         </>
@@ -66,8 +73,7 @@ const User = () => {
                 </div>
             </div>
         </>
-
-    );
+     );
 }
 
 export default User;

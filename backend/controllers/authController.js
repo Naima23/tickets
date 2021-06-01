@@ -4,6 +4,8 @@ const Tickets = require('../models/Tickets')
 const Fawn = require('fawn')
 const bcrypt =require('bcrypt')
 const jwt = require('jsonwebtoken')
+const assign = require('../models/Assign')
+const { findById } = require('../models/User')
 
 
  //*************************register//
@@ -68,7 +70,7 @@ exports.logoutController = (req, res) =>{
 //*****************affecter
 exports.affecter = async (req, res)=>{
     const {nom} = req.body;
-    // find nom technicien
+    // // find nom technicien
     const technicien = await User.findOne({nom}).select('-password');
     const affecter = new Affecter({
         id_technicien: technicien._id,
@@ -80,6 +82,55 @@ exports.affecter = async (req, res)=>{
     .update('tick', {etat: 're-en-attent'}, {etat: 're-affecter'})
     .run({useMongoose: true})
     if(result) return res.status(201).json(`ticket affecter à ${technicien.nom}`)   
+    console.log(technicien)
+   
+}
+
+//*****************fitchTicketTechnicien */
+
+exports.fitchTicketTechnicien = async (req, res)=>{
+    try {
+        const tickets = await assign.find({id_technicien: res.auth._id}).populate('id_ticket');
+        console.log(tickets)
+        if(tickets) return res.status(200).json(tickets)
+        
+    } catch (error) {
+        if(error) throw Error(error)
+    }
+
+}
+
+//****************************cloturer */
+exports.cloturer = async (req, res)=>{ 
+    const ticket= await Tickets.findById(req.params.id)
+ 
+    const affecter = new Affecter({
+        id_technicien: res.auth._id,
+        id_ticket: ticket._id 
+    })
+    const task = Fawn.Task();
+    const result = await task.save('Assign', affecter)
+    .update('tick', {etat: 'affecter'}, {etat: 'cloturer'})
+    .update('tick', {etat: 're-affecter'}, {etat: 'cloturer'})
+    .run({useMongoose: true})
+    if(result) return res.status(201).json(`ticket updated à ${ticket}`)   
 }
 
 
+
+//****************************annuler */
+exports.annuler = async (req ,res) => {
+    const ticket = await Tickets.findById(req.params.id)
+
+    const affecter = new Affecter({
+        id_technicien: res.auth._id,
+        id_ticket: ticket._id,
+    })
+    const task = Fawn.Task();
+    const result = await task.save('Assign',affecter)
+    .update('tick',{etat:'affecter'},{etat:'re-en-attent'})
+    .update('tick',{etat:'re-affecter'},{etat:'re-en-attent'})
+    .run({useMongoose:true})
+    if(result) return res.status(201).json(`ticket updat a ${ticket}`)
+
+}
